@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: #05010d;
+  --foreground: #e8ecff;
+  --accent-a: 132, 94, 247;
+  --accent-b: 41, 204, 255;
+  --surface: rgba(16, 13, 32, 0.75);
+  --grid-color: rgba(120, 125, 160, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: #131228;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --drop-shadow-constellation: 0 12px 45px rgba(92, 96, 255, 0.35);
+}
+
+body {
+  min-height: 100vh;
+  background:
+      radial-gradient(circle at 20% 20%, rgba(80, 86, 255, 0.28), transparent 55%),
+      radial-gradient(circle at 80% 0%, rgba(41, 204, 255, 0.24), transparent 45%),
+      radial-gradient(circle at 50% 70%, rgba(255, 113, 206, 0.2), transparent 55%),
+      #05010d;
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  position: relative;
+  overflow-x: hidden;
+}
+
+main::before {
+  content: "";
+  position: fixed;
+  inset: -25vmax;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.12), transparent 48%),
+    radial-gradient(circle at 70% 40%, rgba(127, 193, 255, 0.14), transparent 52%);
+  filter: blur(120px);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.interstellar-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.orbital-glow {
+  background: linear-gradient(
+    135deg,
+    rgba(var(--accent-a), 0.92),
+    rgba(var(--accent-b), 0.86)
+  );
+  box-shadow: var(--drop-shadow-constellation);
+}
+
+.gemini-blur {
+  filter: blur(32px);
+}
+
+.pulse-nebula {
+  animation: pulse-nebula 18s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-nebula {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.95) translate(-8%, -6%);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1.08) translate(6%, 8%);
+  }
+}
